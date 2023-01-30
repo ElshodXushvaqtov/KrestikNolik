@@ -1,14 +1,11 @@
 package uz.itschool.myapplication
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 
-var isKrestik = false
-
+var bool = true
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,18 +20,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         var image7 = findViewById<ImageView>(R.id.linear3image1).setOnClickListener(this)
         var image8 = findViewById<ImageView>(R.id.linear3image2).setOnClickListener(this)
         var image9 = findViewById<ImageView>(R.id.linear3image3).setOnClickListener(this)
-
     }
 
     override fun onClick(view: View?) {
-        isKrestik = if(!isKrestik){
-            view!!.setBackgroundResource(R.drawable.krestik)
-            true
-        } else{
-            view!!.setBackgroundResource(R.drawable.nolik)
-            false
-        }
 
+        val image = findViewById<ImageView>(view!!.id)
+        if (image.drawable != null) return
+        bool = if (bool) {
+            image.setImageResource(R.drawable.krestik)
+            false
+        } else {
+            image.setImageResource(R.drawable.nolik)
+            true
+        }
 
     }
 }
